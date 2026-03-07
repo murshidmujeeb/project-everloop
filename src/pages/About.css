@@ -1,0 +1,420 @@
+/* =====================================================
+   ABOUT PAGE — Dark Architectural Luxury
+   SOP @ui-ux-pro-max + @frontend-design + @react-patterns
+   ===================================================== */
+
+/* ─── PAGE HEADER ──────────────────────────────────── */
+.page-header {
+    position: relative;
+    padding: 200px 0 120px;
+    background-color: var(--color-bg-primary);
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    /* Replaced gold border */
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+    /* Replaced gold radial */
+    pointer-events: none;
+}
+
+.page-eyebrow {
+    display: inline-block;
+    font-family: 'ui-monospace', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-cta);
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(40px, 6vw, 80px);
+    /* Matches home hero logic */
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 24px;
+    line-height: 0.95;
+}
+
+.page-subtitle {
+    font-size: 17px;
+    color: rgba(161, 161, 170, 0.85);
+    max-width: 600px;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+/* ─── MISSION SPLIT ────────────────────────────────── */
+.mission-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .mission-split {
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+    }
+}
+
+.mission-content h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin-bottom: 24px;
+    line-height: 1.1;
+}
+
+.mission-content p {
+    color: rgba(161, 161, 170, 0.85);
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+/* Vertical accent bar beside blockquote */
+.mission-quote {
+    border-left: 2px solid var(--color-text-primary);
+    padding-left: 24px;
+    margin: 32px 0;
+    font-style: italic;
+    font-size: 20px;
+    color: rgba(244, 244, 245, 0.9);
+    line-height: 1.5;
+    font-weight: 200;
+}
+
+.mission-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--color-bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    /* Standard Apple container */
+}
+
+.mission-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8) contrast(1.1);
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mission-visual:hover img {
+    transform: scale(1.04);
+}
+
+.mission-img-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+}
+
+/* ─── STATS / NUMBERS ROW ──────────────────────────── */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    /* Replaces gold grid borders */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 768px) {
+    .stats-row {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.stat-box {
+    background: var(--color-bg-primary, var(--color-bg-primary));
+    padding: 48px 32px;
+    text-align: center;
+    transition: background 0.4s ease;
+}
+
+.stat-box:hover {
+    background: var(--color-bg-secondary, var(--color-bg-secondary));
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: clamp(38px, 5vw, 48px);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+}
+
+/* ─── DARK VALUES SECTION ──────────────────────────── */
+.values-dark {
+    background: var(--color-bg-dark, var(--color-bg-primary));
+    color: #fff;
+    border-top: 1px solid rgba(226, 192, 68, 0.1);
+    border-bottom: 1px solid rgba(226, 192, 68, 0.1);
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: rgba(226, 192, 68, 0.15);
+}
+
+@media (min-width: 768px) {
+    .values-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.value-card {
+    background: var(--color-bg-dark, var(--color-bg-primary));
+    padding: 60px 40px;
+    position: relative;
+    transition: background 0.4s ease, transform 0.4s ease;
+    z-index: 1;
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    width: 32px;
+    height: 2px;
+    background: var(--color-cta);
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.value-card:hover {
+    background: var(--color-bg-primary, var(--color-bg-primary));
+    transform: translateY(-4px);
+    z-index: 2;
+    box-shadow: 0 16px 40px rgba(1, 21, 16, 0.8);
+}
+
+.value-card:hover::before {
+    width: 80px;
+}
+
+.value-number {
+    font-family: 'ui-monospace', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(226, 192, 68, 0.6);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.value-card h3 {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f4f4f5;
+    margin-bottom: 16px;
+}
+
+.value-card p {
+    color: rgba(161, 161, 170, 0.7);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ─── MANUFACTURING ────────────────────────────────── */
+.manufacturing-section {
+    background: var(--color-bg-primary, var(--color-bg-primary));
+}
+
+.manufacturing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+@media (min-width: 768px) {
+    .manufacturing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.manufacturing-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 32px;
+    border: 1px solid rgba(226, 192, 68, 0.15);
+    transition: all 0.4s ease;
+    background: var(--color-bg-secondary, var(--color-bg-secondary));
+}
+
+.manufacturing-item:hover {
+    border-color: rgba(226, 192, 68, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(1, 21, 16, 0.6);
+}
+
+.manufacturing-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-cta);
+}
+
+.manufacturing-item h4 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f4f4f5;
+    margin-bottom: 8px;
+}
+
+.manufacturing-item p {
+    color: rgba(161, 161, 170, 0.7);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ─── CERTIFICATIONS ───────────────────────────────── */
+.certifications-section {
+    background: var(--color-bg-secondary, var(--color-bg-secondary));
+}
+
+.cert-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.cert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: 1px solid rgba(226, 192, 68, 0.3);
+    color: rgba(226, 192, 68, 0.9);
+    font-family: 'ui-monospace', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.cert-badge:hover {
+    background: rgba(226, 192, 68, 0.15);
+    border-color: var(--color-cta);
+    transform: translateY(-2px);
+}
+
+/* ─── TEAM / LEADERSHIP ────────────────────────────── */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.team-card {
+    text-align: center;
+}
+
+.team-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    filter: grayscale(30%) brightness(0.85);
+    transition: all 0.5s ease;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.team-card:hover .team-photo {
+    filter: grayscale(0%) brightness(0.95);
+}
+
+.team-name {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #f4f4f5;
+    margin-bottom: 6px;
+}
+
+.team-role {
+    font-family: 'ui-monospace', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(212, 175, 55, 0.7);
+}
+
+/* ─── CTA SECTION ─────────────────────────────────── */
+.about-cta-section {
+    background: linear-gradient(to right, var(--color-bg-primary), var(--color-bg-secondary));
+    border-top: 1px solid rgba(226, 192, 68, 0.15);
+    text-align: center;
+}
+
+.about-cta-section h2 {
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 200;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #f4f4f5;
+    margin-bottom: 16px;
+}
+
+.about-cta-section p {
+    color: rgba(161, 161, 170, 0.8);
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+}

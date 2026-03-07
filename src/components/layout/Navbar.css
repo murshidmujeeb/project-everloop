@@ -1,0 +1,243 @@
+/* ─── NAVBAR ──────────────────────────────────────────────── */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    background-color: transparent;
+    transition: all 0.4s ease;
+    z-index: 1000;
+}
+
+/* Standard full-width macOS style navbar when scrolled */
+.navbar.scrolled {
+    padding: 16px 0;
+    background: rgba(10, 10, 12, 0.7);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 0 var(--content-padding-x);
+}
+
+/* ─── LOGO ─────────────────────────────────────────────────── */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo-container {
+    display: inline-block;
+    /* Background gradient is now injected dynamically via inline style in React */
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center left;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center left;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.brand-logo-container:hover {
+    filter: brightness(1.2);
+}
+
+.brand-logo-spacer {
+    height: 52px;
+    /* Standard logo size for interior pages */
+    width: auto;
+    opacity: 0;
+    /* Hidden, provides physical dimensions for the mask */
+    display: block;
+    transition: height 0.4s ease;
+}
+
+/* Home Page specific enlargement */
+.brand-logo-spacer.home-logo {
+    height: 100px;
+}
+
+/* ─── RIGHT SECTION (Links + Actions) ───────────────────────────────────────────── */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.nav-item {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 4px 0;
+}
+
+/* Specific styling for when resting on the Landing Hero Image */
+.navbar:not(.scrolled).is-home .nav-item {
+    color: #ffffff;
+    /* High contrast white */
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    /* Text shadow for legibility */
+}
+
+/* Hover remains the same */
+.nav-item:hover,
+.navbar:not(.scrolled).is-home .nav-item:hover {
+    color: var(--color-text-primary);
+}
+
+/* Elegant minimalist underline on hover */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-text-primary);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* ─── CONTACT BUTTON ──────────────────────────────────────── */
+.nav-contact-btn {
+    padding: 10px 24px;
+    background-color: var(--color-text-primary);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+.nav-contact-btn:hover {
+    transform: scale(1.02);
+    background-color: var(--color-cta-hover);
+}
+
+/* ─── ACTIONS ─────────────────────────────────────────────── */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.lang-selector {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.lang-selector:hover {
+    color: var(--color-text-primary);
+}
+
+/* ─── MOBILE TOGGLE ──────────────────────────────────────── */
+.mobile-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    z-index: 1002;
+    transition: transform 0.3s ease;
+}
+
+.mobile-toggle:hover {
+    opacity: 0.8;
+}
+
+/* ─── MOBILE NAV OVERLAY ────────────────────────────────────── */
+.mobile-nav-overlay {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .hidden-mobile {
+        display: none !important;
+    }
+
+    .mobile-toggle {
+        display: flex;
+    }
+
+    .mobile-nav-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        z-index: 1000;
+    }
+
+    .mobile-nav-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 40px 20px;
+    }
+
+    .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .mobile-nav-links a:not(.mobile-contact-btn) {
+        font-family: var(--font-heading);
+        font-size: 28px;
+        font-weight: 600;
+        color: var(--color-text-secondary);
+        letter-spacing: -0.02em;
+        transition: color 0.3s ease;
+    }
+
+    .mobile-nav-links a:hover {
+        color: var(--color-text-primary);
+    }
+
+    .mobile-contact-btn {
+        margin-top: 32px;
+        padding: 14px 40px;
+        background-color: var(--color-text-primary);
+        color: #000;
+        border-radius: 100px;
+        font-family: var(--font-body);
+        font-weight: 500;
+        font-size: 16px;
+    }
+}
