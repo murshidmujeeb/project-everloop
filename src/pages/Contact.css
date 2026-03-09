@@ -27,7 +27,7 @@
 
 .page-title {
     font-size: clamp(40px, 6vw, 72px);
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     letter-spacing: -0.04em;
 }
 
@@ -67,7 +67,7 @@
 
 .info-block h3 {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: var(--weight-bold);
     margin-bottom: 6px;
     color: var(--color-text-primary);
     letter-spacing: -0.01em;
@@ -110,7 +110,7 @@
 }
 
 .whatsapp-box h3 {
-    font-weight: 600;
+    font-weight: var(--weight-bold);
     letter-spacing: -0.01em;
 }
 
@@ -132,7 +132,7 @@
 
 .form-title {
     font-size: 28px;
-    font-weight: 600;
+    font-weight: var(--weight-bold);
     letter-spacing: -0.02em;
 }
 
@@ -155,7 +155,7 @@
 .form-group label {
     display: block;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: var(--weight-medium);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--color-text-secondary);

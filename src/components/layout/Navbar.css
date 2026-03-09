@@ -80,10 +80,11 @@
 
 .nav-item {
     font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 300;
     color: var(--color-text-secondary);
-    letter-spacing: -0.01em;
+    letter-spacing: var(--letter-spacing-nav);
+    text-transform: uppercase;
     transition: color 0.3s ease;
     position: relative;
     padding: 4px 0;
@@ -126,8 +127,10 @@
     background-color: var(--color-text-primary);
     border-radius: var(--radius-full);
     font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: var(--weight-medium);
+    font-size: 13px;
+    letter-spacing: var(--letter-spacing-nav);
+    text-transform: uppercase;
     color: #000;
     transition: all 0.3s ease;
 }
@@ -148,8 +151,10 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--letter-spacing-nav);
+    text-transform: uppercase;
     color: var(--color-text-secondary);
     cursor: pointer;
     transition: color 0.3s ease;
@@ -220,7 +225,7 @@
     .mobile-nav-links a:not(.mobile-contact-btn) {
         font-family: var(--font-heading);
         font-size: 28px;
-        font-weight: 600;
+        font-weight: var(--weight-bold);
         color: var(--color-text-secondary);
         letter-spacing: -0.02em;
         transition: color 0.3s ease;
@@ -237,7 +242,7 @@
         color: #000;
         border-radius: 100px;
         font-family: var(--font-body);
-        font-weight: 500;
+        font-weight: var(--weight-medium);
         font-size: 16px;
     }
 }

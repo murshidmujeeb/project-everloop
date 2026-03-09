@@ -143,7 +143,7 @@
 
 .modal-eyebrow {
     display: block;
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -152,9 +152,9 @@
 }
 
 .modal-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-heading);
     font-size: clamp(22px, 2.8vw, 36px);
-    font-weight: 200;
+    font-weight: var(--weight-light);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #f4f4f5;
@@ -163,7 +163,7 @@
 }
 
 .modal-meta {
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
     color: rgba(161, 161, 170, 0.6);
     letter-spacing: 1px;
@@ -177,7 +177,7 @@
 }
 
 .specs-heading {
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -201,7 +201,7 @@
 }
 
 .spec-key {
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -242,7 +242,7 @@
 
 .variant-label {
     display: block;
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -287,7 +287,7 @@
 }
 
 .swatch-name {
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     font-size: 8px;
     letter-spacing: 0.5px;
     text-transform: uppercase;

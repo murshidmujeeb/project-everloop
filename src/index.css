@@ -5,9 +5,41 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('/fonts/Figtree/Figtree-Light.ttf') format('truetype');
+  font-weight: var(--weight-light);
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('/fonts/Figtree/Figtree-Regular.ttf') format('truetype');
+  font-weight: var(--weight-regular);
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('/fonts/Figtree/Figtree-Medium.ttf') format('truetype');
+  font-weight: var(--weight-medium);
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('/fonts/Figtree/Figtree-Bold.ttf') format('truetype');
+  font-weight: var(--weight-bold);
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* ─── COLOR SYSTEM (Black & Elegant Monochrome) ─────────────────────────── */
-  --color-bg-primary: #000000;
+  --color-bg-primary: #0a0a0c;
+  --color-bg-premium: #0a0a0c;
   /* Pitch black */
   --color-bg-secondary: #111111;
   /* True dark gray */
@@ -42,22 +74,33 @@
   --color-bg-dark: #000000;
 
   /* ─── TYPOGRAPHY SYSTEM ──────────────────────── */
-  /* Focus on Inter and system fonts for the Apple look */
-  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-mono: 'SF Mono', 'ui-monospace', monospace;
+  /* Focus on Figtree for the premium look */
+  --font-heading: 'Figtree', sans-serif;
+  --font-body: 'Figtree', sans-serif;
+  --font-mono: 'Figtree', monospace;
+
+  /* ─── TYPOGRAPHY WEIGHTS & TRACKING ────────── */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  --letter-spacing-h1: -2.4px;
+  --letter-spacing-h2: -1.2px;
+  --letter-spacing-nav: 1.4px;
 
   /* ─── SPACING & LAYOUT ──────────────────────── */
   --container-max-width: 80vw;
   --section-padding-y: 160px;
   --content-padding-x: 0;
 
-  /* ─── BORDER & SHAPE ─────────────────────────── */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
+  /* ─── SPACING & LAYOUT ───────────────────────── */
+  --navbar-height: 80px; /* Standardize navbar height for layout calculations */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
   /* Apple uses softer rounded corners, we use sharp here */
-  --radius-xl: 12px;
   --radius-full: 9999px;
 
   /* ─── SHADOW & DEPTH ─────────────────────────── */
@@ -109,33 +152,49 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.04em;
-  /* Tighter modern tracking */
+  font-weight: var(--weight-bold);
   line-height: 1.1;
   color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
 }
 
 h1 {
-  font-weight: 700;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  letter-spacing: var(--letter-spacing-h1);
+  font-weight: var(--weight-bold);
 }
 
 h2 {
-  font-weight: 600;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  letter-spacing: var(--letter-spacing-h2);
+  font-weight: var(--weight-bold);
 }
 
 h3 {
-  font-weight: 500;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: var(--weight-bold);
   letter-spacing: -0.02em;
 }
 
+h4 {
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: var(--weight-bold);
+}
+
+h5,
+h6 {
+  font-weight: var(--weight-medium);
+}
+
 p {
+  font-weight: var(--weight-regular);
   color: var(--color-text-secondary);
-  line-height: 1.47059;
-  font-weight: 400;
+  line-height: 1.6;
 }
 
 a {
   text-decoration: none;
+  font-weight: var(--weight-medium);
   color: inherit;
   transition: color var(--transition-base), text-shadow var(--transition-base);
 }
@@ -161,6 +220,59 @@ video {
 
 .section {
   padding: 100px 0;
+  position: relative;
+}
+
+/* Base class for strictly 100vh sections */
+.vh-100-section {
+  min-height: 100vh;
+  height: 100vh;
+  scroll-snap-align: start;       /* Section snapping */
+  scroll-snap-stop: always;       /* Forces stop at each section */
+}
+
+/* Enable scroll-snap on the page wrapper */
+.home-page-wrapper {
+  scroll-snap-type: y proximity;  /* Proximity snap - gentle, not aggressive */
+}
+
+/* ─── SECTION REVEAL ANIMATION HELPERS ──────────────────────── */
+/* These work alongside Framer Motion whileInView */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  filter: blur(4px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s ease;
+}
+
+.section-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Staggered children reveal */
+.section-reveal-child {
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-reveal-child.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -177,7 +289,7 @@ video {
   gap: 8px;
   padding: 12px 24px;
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: var(--weight-bold);
   font-size: 15px;
   letter-spacing: -0.01em;
   border-radius: var(--radius-full);
@@ -231,6 +343,7 @@ video {
 }
 
 .text-muted {
+  font-weight: var(--weight-light);
   color: var(--color-text-muted);
 }
 

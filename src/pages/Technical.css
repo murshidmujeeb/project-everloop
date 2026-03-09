@@ -22,7 +22,7 @@
 /* Shared classes used by this page */
 .page-eyebrow {
     display: inline-block;
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -34,7 +34,7 @@
     font-family: var(--font-heading);
     font-size: clamp(40px, 6vw, 80px);
     /* Matches home hero logic */
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     letter-spacing: -0.04em;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 24px;
@@ -46,13 +46,13 @@
     color: rgba(161, 161, 170, 0.8);
     max-width: 540px;
     line-height: 1.8;
-    font-weight: 300;
+    font-weight: var(--weight-light);
 }
 
 /* ─── SECTION HEADER (reused across sections) ─────── */
 .section-label {
     display: inline-block;
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -63,7 +63,7 @@
 .section-heading {
     font-family: var(--font-heading);
     font-size: clamp(28px, 4vw, 42px);
-    font-weight: 600;
+    font-weight: var(--weight-bold);
     letter-spacing: -0.02em;
     color: var(--color-text-primary);
     margin-bottom: 40px;
@@ -112,9 +112,9 @@
 }
 
 .metric-value {
-    font-family: 'Utendo', sans-serif;
+    font-family: var(--font-heading);
     font-size: 42px;
-    font-weight: 200;
+    font-weight: var(--weight-light);
     color: var(--color-cta);
     line-height: 1;
 }
@@ -126,7 +126,7 @@
 }
 
 .metric-label {
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -172,7 +172,7 @@
 
 .specs-table thead th {
     font-family: var(--font-body);
-    font-weight: 500;
+    font-weight: var(--weight-medium);
     font-size: 11px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -201,7 +201,7 @@
     padding: 18px 28px;
     color: rgba(244, 244, 245, 0.85);
     font-size: 14px;
-    font-weight: 400;
+    font-weight: var(--weight-regular);
     white-space: nowrap;
     width: 220px;
     vertical-align: middle;
@@ -211,7 +211,7 @@
     padding: 18px 28px;
     color: rgba(161, 161, 170, 0.9);
     font-size: 14px;
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     vertical-align: middle;
     border-left: 1px solid rgba(226, 192, 68, 0.1);
 }
@@ -239,7 +239,7 @@
     font-size: 15px;
     line-height: 1.8;
     margin-bottom: 40px;
-    font-weight: 300;
+    font-weight: var(--weight-light);
 }
 
 /* Vertical layer rows */
@@ -268,7 +268,7 @@
 
 .layer-idx {
     font-family: var(--font-body);
-    font-weight: 500;
+    font-weight: var(--weight-medium);
     font-size: 11px;
     color: var(--color-text-secondary);
     letter-spacing: 1px;
@@ -291,13 +291,13 @@
 
 .layer-name {
     font-size: 14px;
-    font-weight: 400;
+    font-weight: var(--weight-regular);
     color: rgba(244, 244, 245, 0.85);
     letter-spacing: 0.04em;
 }
 
 .layer-detail {
-    font-family: 'ui-monospace', monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
     color: rgba(113, 113, 122, 0.7);
     letter-spacing: 0.5px;
@@ -339,7 +339,7 @@
 
 .diagram-slab span {
     font-family: var(--font-body);
-    font-weight: 500;
+    font-weight: var(--weight-medium);
     font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -398,7 +398,7 @@
 
 .cert-name {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: var(--weight-medium);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #f4f4f5;
@@ -474,7 +474,7 @@
 .download-name {
     font-size: 15px;
     color: rgba(244, 244, 245, 0.9);
-    font-weight: 400;
+    font-weight: var(--weight-regular);
     letter-spacing: 0.03em;
 }
 
@@ -492,7 +492,7 @@
 
 .download-size {
     font-family: var(--font-body);
-    font-weight: 500;
+    font-weight: var(--weight-medium);
     font-size: 11px;
     letter-spacing: 1px;
     color: var(--color-text-secondary);
@@ -546,7 +546,7 @@
 .tech-cta-title {
     font-family: var(--font-heading);
     font-size: clamp(28px, 4vw, 42px);
-    font-weight: 600;
+    font-weight: var(--weight-bold);
     letter-spacing: -0.02em;
     color: var(--color-text-primary);
     margin-bottom: 12px;

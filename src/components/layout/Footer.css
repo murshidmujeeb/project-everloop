@@ -19,6 +19,15 @@
     background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
 }
 
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo-wrap {
+    margin-bottom: 24px;
+}
+
 .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1.5fr;
@@ -72,7 +81,7 @@
 .footer-contact h4 {
     font-size: 13px;
     letter-spacing: 0.05em;
-    font-weight: 600;
+    font-weight: var(--weight-bold);
     text-transform: uppercase;
     color: var(--color-text-primary);
     margin-bottom: 24px;
@@ -87,7 +96,7 @@
 .footer-links a {
     color: var(--color-text-secondary);
     font-size: 15px;
-    font-weight: 500;
+    font-weight: var(--weight-medium);
     transition: color 0.3s ease;
 }
 

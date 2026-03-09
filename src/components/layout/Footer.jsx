@@ -11,7 +11,21 @@ const Footer = () => {
                 <div className="footer-grid">
 
                     <div className="footer-brand">
-                        <img src={logoUrl} alt="Everloop Carpet Logo" className="brand-logo-footer" />
+                        <div className="footer-logo-wrap">
+                            <div
+                                className="brand-logo-container silver-logo"
+                                style={{
+                                    WebkitMaskImage: `url(${logoUrl})`,
+                                    maskImage: `url(${logoUrl})`,
+                                    background: "linear-gradient(135deg, #ffffff 0%, #8a8a93 100%)",
+                                    width: '180px',
+                                    height: '45px',
+                                    display: 'block'
+                                }}
+                            >
+                                <img src={logoUrl} alt="Everloop Carpet Logo" className="brand-logo-spacer" style={{ opacity: 0, width: '100%', height: '100%' }} />
+                            </div>
+                        </div>
                         <p className="footer-desc">
                             High-performance modular carpet tiles engineered for modern architecture, global commercial spaces, and next-generation interiors.
                         </p>
