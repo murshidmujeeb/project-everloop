@@ -79,10 +79,15 @@
 
 .metrics-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr); /* Default vertical stack for very small mobile */
     gap: 1px;
     background: rgba(255, 255, 255, 0.08);
-    /* Replaces gold grid lines */
+}
+
+@media (min-width: 480px) {
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (min-width: 768px) {
@@ -159,10 +164,9 @@
 
 .specs-table-wrap {
     border: 1px solid rgba(255, 255, 255, 0.08);
-    /* Monochromatic border */
     overflow-x: auto;
     border-radius: var(--radius-md);
-    /* Apply apple radius */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
 }
 
 .specs-table {
@@ -198,7 +202,7 @@
 }
 
 .spec-property {
-    padding: 18px 28px;
+    padding: 18px 20px; /* Reduced side padding slightly for mobile */
     color: rgba(244, 244, 245, 0.85);
     font-size: 14px;
     font-weight: var(--weight-regular);
@@ -208,12 +212,13 @@
 }
 
 .spec-value {
-    padding: 18px 28px;
+    padding: 18px 20px; /* Reduced side padding slightly for mobile */
     color: rgba(161, 161, 170, 0.9);
     font-size: 14px;
     font-family: var(--font-mono);
     vertical-align: middle;
     border-left: 1px solid rgba(226, 192, 68, 0.1);
+    min-width: 260px; /* Ensure content doesn't crush too much, forcing scroll if needed */
 }
 
 /* ─── SECTION 3: LAYER DIAGRAM ────────────────────── */

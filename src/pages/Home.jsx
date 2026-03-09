@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { ShieldCheck, Volume2, Layers, Leaf, CheckCircle, Building2, Monitor, Plane, Coffee, GraduationCap, ShoppingBag } from 'lucide-react';
@@ -47,6 +47,13 @@ const Home = () => {
         { title: 'Hospitality', desc: 'Luxury comfort, deep textures, and bespoke patterns for guest areas.', icon: <Coffee size={32} strokeWidth={1.5} /> },
         { title: 'Education', desc: 'Extreme stain resistance and vibrant, engaging color palettes.', icon: <GraduationCap size={32} strokeWidth={1.5} /> },
         { title: 'Retail', desc: 'High visual impact flooring that reinforces brand identity.', icon: <ShoppingBag size={32} strokeWidth={1.5} /> }
+    ];
+
+    const foundationFeatures = [
+        { icon: <ShieldCheck size={32} strokeWidth={1.5} />, title: "Extreme Durability", desc: "Engineered with high-density premium Nylon 6,6 for unparalleled performance." },
+        { icon: <Volume2 size={32} strokeWidth={1.5} />, title: "Superior Acoustics", desc: "Advanced acoustic foam backing reducing impact noise by up to 30dB." },
+        { icon: <Layers size={32} strokeWidth={1.5} />, title: "Modular Unity", desc: "Precision-cut tiles for seamless installation and replacement." },
+        { icon: <Leaf size={32} strokeWidth={1.5} />, title: "Eco Blueprint", desc: "100% recyclable materials with low carbon footprint." }
     ];
 
     return (
@@ -118,8 +125,14 @@ const Home = () => {
 
 
             {/* Section 2: Our Foundation */}
-            <section id="foundation" className="section about-section relative overflow-hidden vh-100-section" style={{ padding: 0 }}>
-                <Orb hue={210} hoverIntensity={0.3} backgroundColor="#0a0a0c" />
+            <section id="foundation" className="section about-section relative vh-100-section" style={{ padding: 0 }}>
+                {/* Sticky Orb Track to ensure it stays visually centered on all screen sizes */}
+                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
+                    <div style={{ position: 'sticky', top: 0, width: '100%', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                        <Orb hue={210} hoverIntensity={0.3} backgroundColor="#0a0a0c" />
+                    </div>
+                </div>
+
                 <div className="container relative z-10 w-full" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: 'var(--navbar-height)' }}>
                     <motion.div
                         initial="hidden"
@@ -143,12 +156,7 @@ const Home = () => {
                         className="perspective-container"
                     >
                         <div className="perspective-stack">
-                            {[
-                                { icon: <ShieldCheck size={32} strokeWidth={1.5} />, title: "Extreme Durability", desc: "Engineered with high-density premium Nylon 6,6 for unparalleled performance." },
-                                { icon: <Volume2 size={32} strokeWidth={1.5} />, title: "Superior Acoustics", desc: "Advanced acoustic foam backing reducing impact noise by up to 30dB." },
-                                { icon: <Layers size={32} strokeWidth={1.5} />, title: "Modular Unity", desc: "Precision-cut tiles for seamless installation and replacement." },
-                                { icon: <Leaf size={32} strokeWidth={1.5} />, title: "Eco Blueprint", desc: "100% recyclable materials with low carbon footprint." }
-                            ].map((feature, idx) => (
+                            {foundationFeatures.map((feature, idx) => (
                                 <motion.div
                                     key={idx}
                                     variants={fadeInUp}
@@ -261,10 +269,8 @@ const Home = () => {
                         <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '100px', background: 'linear-gradient(to right, var(--color-bg-primary) 0%, transparent 100%)', zIndex: 10, pointerEvents: 'none' }}></div>
                         <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '100px', background: 'linear-gradient(to left, var(--color-bg-primary) 0%, transparent 100%)', zIndex: 10, pointerEvents: 'none' }}></div>
 
-                        <motion.div
+                        <div
                             className="industries-carousel-track"
-                            animate={{ x: ["0%", "-50%"] }}
-                            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
                             style={{ display: 'flex', gap: '30px', width: 'max-content', padding: '20px 0' }}
                         >
                             {/* Duplicate array for seamless infinite scroll */}
@@ -272,7 +278,7 @@ const Home = () => {
                                 <div
                                     key={i}
                                     className="perspective-card glass-panel"
-                                    style={{ flexShrink: 0 }}
+                                    style={{ flexShrink: 0, margin: 0 }}
                                     onMouseMove={(e) => {
                                         const rect = e.currentTarget.getBoundingClientRect();
                                         const x = e.clientX - rect.left;
@@ -286,7 +292,7 @@ const Home = () => {
                                     <p>{industry.desc}</p>
                                 </div>
                             ))}
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>

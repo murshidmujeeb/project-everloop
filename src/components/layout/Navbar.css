@@ -173,6 +173,12 @@
     cursor: pointer;
     z-index: 1002;
     transition: transform 0.3s ease;
+    padding: 4px; /* Slightly reduce hit area footprint */
+}
+
+.mobile-toggle svg {
+    width: 24px; /* Reduced from 28px default in lucide if passed explicitly */
+    height: 24px;
 }
 
 .mobile-toggle:hover {
@@ -200,9 +206,7 @@
         left: 0;
         width: 100%;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: saturate(180%) blur(20px);
-        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        background: var(--color-bg-primary); /* Solid background for legibility */
         z-index: 1000;
     }
 
