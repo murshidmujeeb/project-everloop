@@ -619,8 +619,8 @@
         height: calc(100dvh - 60px);
     }
 
-    .inline-specs {
-        display: none;
+    .info-stage .inline-specs {
+        display: none !important;
     }
     
     .collection-title {
