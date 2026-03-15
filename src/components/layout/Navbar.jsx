@@ -13,10 +13,10 @@ const Navbar = () => {
     const isHome = location.pathname === '/';
     const isHeroVisible = isHome && !isScrolled;
 
-    // Dynamic logo gradient: Premium Deep Blue if at top of Home, Silver otherwise
+    // Dynamic logo gradient: luxury warm metallic when on hero, cooler platinum elsewhere
     const logoGradient = isHeroVisible
-        ? "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)"
-        : "linear-gradient(135deg, #ffffff 0%, #8a8a93 100%)";
+        ? "linear-gradient(135deg, #f5f3ff 0%, #f3e2c4 28%, #d1a766 55%, #f7f2e9 100%)"
+        : "linear-gradient(135deg, #f5f5f7 0%, #b9bcc7 45%, #8b8c97 100%)";
 
     useEffect(() => {
         const handleScroll = () => {

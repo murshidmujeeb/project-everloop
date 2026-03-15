@@ -17,7 +17,7 @@ const Footer = () => {
                                 style={{
                                     WebkitMaskImage: `url(${logoUrl})`,
                                     maskImage: `url(${logoUrl})`,
-                                    background: "linear-gradient(135deg, #ffffff 0%, #8a8a93 100%)",
+                                    background: "linear-gradient(135deg, #f5f5f7 0%, #c5c7d3 35%, #8b8c97 100%)",
                                     width: '180px',
                                     height: '45px',
                                     display: 'block'

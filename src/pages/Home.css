@@ -177,6 +177,28 @@
   color: var(--color-text-secondary);
 }
 
+.section-desc--strong {
+  font-size: clamp(16px, 1.35vw, 20px);
+  line-height: 1.55;
+  font-weight: var(--weight-regular);
+  letter-spacing: -0.01em;
+}
+
+/* When used in left-aligned content blocks */
+.tech-content .section-desc {
+  max-width: none;
+  margin: 0;
+}
+
+/* Improve legibility over animated backgrounds */
+.dark-section .section-desc--strong,
+.tech-section .section-desc--strong,
+#foundation .section-desc,
+#foundation .section-desc--strong {
+  color: rgba(255, 255, 255, 0.78);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+
 /* ─── GLASS PANEL UTILITY ────────────────────────────────────── */
 .glass-panel {
   background: rgba(28, 28, 30, 0.4);
@@ -332,16 +354,68 @@
 .industries-section {
   position: relative;
   z-index: 5;
+  isolation: isolate; /* ensure z-index layers behave predictably */
+  background-color: var(--color-bg-primary);
+}
+
+/* Override global .dark-section grey for Industries */
+.dark-section.industries-section {
+  background-color: var(--color-bg-primary) !important;
+  background: var(--color-bg-primary) !important;
+}
+
+.industries-bg {
+  z-index: 0;
+  opacity: 1;
+}
+
+.industries-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* Keep base black identical; readability handled by text-shadow */
+  background: transparent;
+}
+
+.industries-content {
+  position: relative;
+  z-index: 2;
+}
+
+.industries-section .section-title {
+  text-shadow: 0 10px 50px rgba(0, 0, 0, 0.65);
+}
+
+.industries-section .section-desc--strong {
+  text-shadow: 0 10px 50px rgba(0, 0, 0, 0.55);
 }
 
 /* ─── GLASS CAROUSEL ──────────────────────────────────────── */
 .industries-carousel-wrapper {
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  position: relative;
+  z-index: 2;
+  /* Avoid mask-image here: it can fully hide children on some GPUs/drivers */
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.industries-carousel-wrapper--bleed {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
+  /* Give hover elevation room so cards don't clip */
+  padding-top: 28px;
+  padding-bottom: 28px;
+  box-sizing: border-box;
 }
 
 .industries-carousel-track {
   display: flex;
+  position: relative;
+  z-index: 2;
   will-change: transform; /* Important for ultra-smooth GPU acceleration */
   animation: marquee 25s linear infinite;
 }
@@ -353,6 +427,44 @@
 
 .industries-carousel-track:hover {
   animation-play-state: paused;
+}
+
+/* Industries carousel needs fixed-width cards (grid uses width:100%) */
+.industries-carousel-track.perspective-stack--row {
+  align-items: stretch;
+}
+
+.industries-carousel-track.perspective-stack--row .perspective-card {
+  flex: 0 0 260px;
+  width: 260px;
+  height: 320px;
+}
+
+/* Industries carousel: avoid "stack blur" + reduce hover lift to prevent clipping */
+.industries-carousel-track.perspective-stack:hover .perspective-card:not(:hover) {
+  filter: none;
+  opacity: 1;
+  transform: none;
+}
+
+.industries-carousel-track.perspective-stack--row .perspective-card {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  transform: translateZ(0);
+  /* Prevent GPU raster blur from backdrop-filter during transforms */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: rgba(28, 28, 30, 0.58);
+}
+
+.industries-carousel-track.perspective-stack--row .perspective-card:hover {
+  /* Keep hover crisp: 2D transform avoids text raster blur */
+  transform: translateY(-10px) scale(1.04);
+  /* Increase frosted blur only on hover */
+  backdrop-filter: blur(26px) saturate(170%);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  background: rgba(28, 28, 30, 0.62);
 }
 
 
@@ -393,20 +505,6 @@
   pointer-events: none;
   white-space: nowrap;
 }
-
-.tech-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-
-@media (max-width: 992px) {
-  .tech-split {
-    grid-template-columns: 1fr;
-  }
-}
-
 
 .tech-list {
   display: flex;
@@ -480,6 +578,12 @@
   position: relative;
 }
 
+/* Override global .dark-section grey for CTA */
+.dark-section.standards-cta-section {
+  background-color: var(--color-bg-primary) !important;
+  background: var(--color-bg-primary) !important;
+}
+
 .glow-blob-bg-center {
   position: absolute;
   top: 50%;
@@ -535,16 +639,27 @@
 }
 
 .perspective-stack {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.perspective-stack--row {
   display: flex;
-  gap: 40px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; /* allow wrapping if constraints are too tight */
+  flex-wrap: nowrap;
+  gap: 30px;
+  width: max-content;
+  max-width: none;
+  margin: 0;
 }
 
 .perspective-card {
   position: relative;
-  width: 240px;
+  width: 100%;
   height: 320px;
   background: rgba(28, 28, 30, 0.4);
   backdrop-filter: blur(20px);
@@ -625,8 +740,13 @@
 
 @media (max-width: 1200px) {
   .perspective-stack {
-    flex-wrap: wrap;
-    gap: 32px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .perspective-stack {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -637,7 +757,6 @@
 
   /* Make a 2-column Grid for Foundation Cards */
   .perspective-stack {
-    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
   }

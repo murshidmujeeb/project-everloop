@@ -25,3 +25,9 @@ dist-ssr
 
 # Large files
 public/collections.zip
+
+# Animation Frames
+public/png frames/
+public/png-frames-alpha/
+public/tile-animation/
+public/tile-animation-png/

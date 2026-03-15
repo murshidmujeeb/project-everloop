@@ -29,64 +29,123 @@ const About = () => {
                 <meta name="description" content="Engineered for longevity, designed for impact. Learn about Everloop Carpet's philosophy and commitment to quality." />
             </Helmet>
 
-            {/* Page Header */}
+            {/* Story Hero */}
             <section className="page-header">
-                <div className="container text-center">
-                    <h1 className="page-title fade-in">ABOUT EVERLOOP</h1>
-                    <p className="page-subtitle fade-in" style={{ animationDelay: '0.2s' }}>
-                        Engineered for Longevity. Designed for Impact.
-                    </p>
+                <div className="container about-hero">
+                    <div className="about-hero-copy">
+                        <span className="page-eyebrow">OUR STORY</span>
+                        <h1 className="page-title">From Loom to Skyline</h1>
+                        <p className="page-subtitle">
+                            EVERLOOP CARPET was born from a simple idea: commercial flooring should be as considered as the architecture it supports.
+                        </p>
+                    </div>
+                    <div className="about-hero-meta animate-on-scroll">
+                        <p>Today, our modular tiles sit quietly under millions of footsteps—guiding flows, absorbing sound, and holding up to the demands of cities that never switch off.</p>
+                    </div>
                 </div>
             </section>
 
-            {/* Brand Philosophy */}
-            <section className="section bg-alt about-content">
+            {/* Chapter 1 — Where we began */}
+            <section className="section about-section about-chapter">
                 <div className="container">
-                    <div className="about-hero-text animate-on-scroll">
-                        <span className="page-eyebrow">PHILOSOPHY</span>
-                        <h2 className="section-title large mb-40">Engineering the Foundation of Modern Workspaces</h2>
-                        <div className="philosophy-grid">
+                    <div className="chapter-grid">
+                        <div className="chapter-label animate-on-scroll">
+                            <span>Chapter 01</span>
+                            <h2>Grounded in Manufacturing</h2>
+                        </div>
+                        <div className="chapter-body animate-on-scroll">
                             <p className="lead-text">
-                                At EVERLOOP CARPET, we believe that the foundation of any great architectural space begins from the ground up. Our mission is to produce modular flooring systems that do more than cover a surface—they enhance the structural integrity, acoustic dynamics, and visual aesthetic of commercial environments worldwide.
+                                We started on the factory floor—among looms, dye baths, and engineers obsessed with tolerances measured in microns.
                             </p>
                             <p>
-                                We serve corporate offices, airports, luxury hotels, and modern IT parks with unwavering commitment to international quality standards, rigorous testing, and sustainable manufacturing practices.
+                                Those origins shaped our culture. Every tile that leaves our lines is the result of disciplined process: yarn selection, twist, tuft bind, backing chemistry, and edge precision all tuned for decades of service in high-traffic environments.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Core Pillars */}
-            <section className="section pillars-section">
+            {/* Chapter 2 — How we think */}
+            <section className="section about-section about-chapter alt">
                 <div className="container">
-                    <div className="pillars-grid">
-                        <div className="pillar-card animate-on-scroll">
-                            <span className="pillar-number">01</span>
-                            <h3>Sustainable Manufacturing</h3>
-                            <p>Closing the loop with eco-series tiles utilizing up to 100% recycled nylon yarn and environmentally responsible backing materials.</p>
+                    <div className="chapter-grid">
+                        <div className="chapter-label animate-on-scroll">
+                            <span>Chapter 02</span>
+                            <h2>Design as Infrastructure</h2>
                         </div>
-                        <div className="pillar-card animate-on-scroll" style={{ transitionDelay: '0.1s' }}>
-                            <span className="pillar-number">02</span>
-                            <h3>Quality Standards</h3>
-                            <p>Precision engineering created to withstand the heaviest commercial traffic (Class 33 rating) with strict quality control for longevity.</p>
-                        </div>
-                        <div className="pillar-card animate-on-scroll" style={{ transitionDelay: '0.2s' }}>
-                            <span className="pillar-number">03</span>
-                            <h3>Global Vision</h3>
-                            <p>Expanding footprint across North America, Europe, and Asia, delivering bespoke flooring solutions for the world's finest architectural projects.</p>
+                        <div className="chapter-body animate-on-scroll">
+                            <p className="lead-text">
+                                For us, design is not decoration—it is infrastructure. A floor map can guide wayfinding, tune acoustics, and quietly carry a brand story.
+                            </p>
+                            <p>
+                                Our studio partners with architects, interior designers, and workplace strategists to build tile systems that solve real problems: reverberation in open offices, zoning for hybrid work, durability in transit hubs, and warmth in hospitality spaces.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Vision Statment */}
-            <section className="section dark-section text-center">
+            {/* Chapter 3 — How we build a tile */}
+            <section className="section about-section about-process">
+                <div className="container">
+                    <div className="about-hero-text animate-on-scroll">
+                        <span className="page-eyebrow">INSIDE THE TILE</span>
+                        <h2 className="section-title large mb-40">What goes into every EVERLOOP module</h2>
+                    </div>
+                    <div className="process-grid">
+                        <div className="process-card animate-on-scroll">
+                            <h3>Engineered Yarn Systems</h3>
+                            <p>High-performance Nylon 6,6 with tight twist control for superior resilience, colourfastness, and soil resistance.</p>
+                        </div>
+                        <div className="process-card animate-on-scroll" style={{ transitionDelay: '0.08s' }}>
+                            <h3>Dimensional Stability</h3>
+                            <p>Multi-layer backing architecture with fiberglass reinforcement keeps tiles perfectly aligned in demanding climates.</p>
+                        </div>
+                        <div className="process-card animate-on-scroll" style={{ transitionDelay: '0.16s' }}>
+                            <h3>Acoustic & Comfort Layers</h3>
+                            <p>Acoustic foam bases and understructure absorb impact noise, reduce fatigue, and create quieter, higher-performing spaces.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Chapter 4 — Global footprint */}
+            <section className="section dark-section about-chapter text-center">
                 <div className="container animate-on-scroll">
-                    <h2 className="section-title mb-40">Innovation in Every Fiber</h2>
-                    <p className="max-w-800 mx-auto text-light">
-                        Headquartered at the intersection of design and industry, EVERLOOP CARPET works directly with leading architectural firms to deliver flooring systems that meet elite eco-building certifications while maintaining uncompromising aesthetic standards.
+                    <span className="page-eyebrow">CHAPTER 04 — GLOBAL FOOTPRINT</span>
+                    <h2 className="section-title mb-40">Built for cities that never pause</h2>
+                    <p className="max-w-800 mx-auto text-light mb-40">
+                        From corporate towers in North America to aviation hubs in the Middle East and technology campuses in Asia, EVERLOOP systems are specified wherever performance and aesthetics must coexist.
                     </p>
+                    <div className="about-stats">
+                        <div className="about-stat">
+                            <span className="about-stat-number">30+</span>
+                            <span className="about-stat-label">Countries supplied</span>
+                        </div>
+                        <div className="about-stat">
+                            <span className="about-stat-number">1M+</span>
+                            <span className="about-stat-label">Square meters installed</span>
+                        </div>
+                        <div className="about-stat">
+                            <span className="about-stat-number">24/7</span>
+                            <span className="about-stat-label">Spaces in continuous use</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Epilogue */}
+            <section className="section about-epilogue">
+                <div className="container animate-on-scroll">
+                    <div className="epilogue-card">
+                        <h2 className="section-title mb-20">Where we are going next</h2>
+                        <p className="text-light mb-32">
+                            The next chapter of EVERLOOP is about circularity and data: tiles that are easier to reclaim, and systems that help facility teams understand how their spaces are really used.
+                        </p>
+                        <p className="text-light">
+                            If you are designing the next generation of workplaces, airports, or hospitality environments, we would love to write that story with you—from the ground up.
+                        </p>
+                    </div>
                 </div>
             </section>
         </>

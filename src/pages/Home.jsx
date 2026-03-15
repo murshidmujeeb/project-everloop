@@ -247,37 +247,50 @@ const Home = () => {
 
             {/* Section 4: Industries We Serve */}
             <section className="section dark-section industries-section vh-100-section relative overflow-hidden" style={{ padding: 0 }}>
-                {/* Prism WebGL Background */}
-                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-                    <Prism />
+                {/* ColorBends WebGL Background */}
+                <div className="industries-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
+                    <ColorBends
+                        colors={['#20e3ff', '#6d4bff', '#ff4d7d']}
+                        rotation={25}
+                        speed={0.18}
+                        scale={1}
+                        frequency={1}
+                        warpStrength={1}
+                        mouseInfluence={1.15}
+                        parallax={0.45}
+                        noise={0.06}
+                        transparent
+                        autoRotate={0}
+                    />
                 </div>
+                <div className="industries-scrim" aria-hidden="true" />
 
-                <div className="container" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: 'var(--navbar-height)', paddingBottom: '120px', position: 'relative', zIndex: 1 }}>
+                <div className="container industries-content" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: 'var(--navbar-height)', paddingBottom: '120px', position: 'relative', zIndex: 2 }}>
                     <motion.div
                         initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
                         className="section-header"
                         style={{ marginBottom: '60px', textAlign: 'center' }}
                     >
                         <h2 className="section-title">Industries We Serve</h2>
-                        <p className="text-secondary" style={{ maxWidth: '600px', margin: '0 auto', fontSize: '18px' }}>
+                        <p className="section-desc section-desc--strong" style={{ maxWidth: '600px', margin: '0 auto' }}>
                             Uncompromising flooring solutions engineered specifically for the distinct operational, acoustic, and aesthetic demands of high-performance commercial environments.
                         </p>
                     </motion.div>
 
-                    <div className="industries-carousel-wrapper" style={{ overflow: 'hidden', width: '100%', position: 'relative' }}>
+                    <div className="industries-carousel-wrapper industries-carousel-wrapper--bleed" style={{ overflow: 'hidden', width: '100%', position: 'relative' }}>
                         {/* Fading Edges */}
-                        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '100px', background: 'linear-gradient(to right, var(--color-bg-primary) 0%, transparent 100%)', zIndex: 10, pointerEvents: 'none' }}></div>
-                        <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '100px', background: 'linear-gradient(to left, var(--color-bg-primary) 0%, transparent 100%)', zIndex: 10, pointerEvents: 'none' }}></div>
+                        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '100px', background: 'linear-gradient(to right, rgba(10, 10, 12, 0.95) 0%, rgba(10, 10, 12, 0) 100%)', zIndex: 1, pointerEvents: 'none' }}></div>
+                        <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '100px', background: 'linear-gradient(to left, rgba(10, 10, 12, 0.95) 0%, rgba(10, 10, 12, 0) 100%)', zIndex: 1, pointerEvents: 'none' }}></div>
 
                         <div
-                            className="industries-carousel-track"
-                            style={{ display: 'flex', gap: '30px', width: 'max-content', padding: '20px 0' }}
+                            className="industries-carousel-track perspective-stack perspective-stack--row"
+                            style={{ display: 'flex', gap: '30px', width: 'max-content', padding: '20px 0', position: 'relative', zIndex: 2 }}
                         >
                             {/* Duplicate array for seamless infinite scroll */}
                             {[...industriesData, ...industriesData].map((industry, i) => (
                                 <div
                                     key={i}
-                                    className="perspective-card glass-panel"
+                                    className="perspective-card"
                                     style={{ flexShrink: 0, margin: 0 }}
                                     onMouseMove={(e) => {
                                         const rect = e.currentTarget.getBoundingClientRect();
@@ -299,45 +312,11 @@ const Home = () => {
 
             {/* Section 5: Technical Excellence */}
             <section className="section tech-section vh-100-section" style={{ padding: 0, position: 'relative', overflow: 'hidden' }}>
-                {/* ColorBends WebGL Background */}
-                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-                    <ColorBends
-                        colors={['#ff5c7a', '#8a5cff', '#00ffd1']}
-                        rotation={0}
-                        speed={0.2}
-                        scale={1}
-                        frequency={1}
-                        warpStrength={1}
-                        mouseInfluence={1.25}
-                        parallax={0.5}
-                        noise={0.1}
-                        transparent
-                        autoRotate={0}
-                    />
+                {/* Orb WebGL Background */}
+                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
+                    <Orb hue={250} hoverIntensity={0.55} backgroundColor="#0a0a0c" />
                 </div>
 
-                {/* Tile Animation — temporarily hidden */}
-                {false && (
-                <motion.div
-                    initial={{ opacity: 0, x: 120 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                    style={{
-                        position: 'absolute',
-                        right: '1%',
-                        top: '15%',
-                        transform: 'translateX(50%)',
-                        width: '65vw',
-                        zIndex: 1,
-                        pointerEvents: 'none'
-                    }}
-                >
-                    <TilePopAnimation />
-                </motion.div>
-                )}
-
-                {/* Left content — narrow column */}
                 <div className="container" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: 'var(--navbar-height)', paddingBottom: '100px', position: 'relative', zIndex: 2 }}>
                     <motion.div
                         initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
@@ -345,7 +324,7 @@ const Home = () => {
                         style={{ maxWidth: '500px' }}
                     >
                         <h2 className="section-title">Technical Excellence</h2>
-                        <p className="mb-40 text-secondary">Our carpet tiles are built to meet the most rigorous international standards for commercial flooring.</p>
+                        <p className="mb-40 section-desc section-desc--strong">Our carpet tiles are built to meet the most rigorous international standards for commercial flooring.</p>
 
                         <ul className="tech-list">
                             {["Class 33 Heavy Commercial Rated", "Fire Retardant Certified", "Acoustic Backing Systems", "Anti-static Technology", "Easy Modular Replacement"].map((item, i) => (

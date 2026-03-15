@@ -231,6 +231,34 @@ video {
   scroll-snap-stop: always;       /* Forces stop at each section */
 }
 
+/* Soft blends between snap sections (keeps scroll flow) */
+.home-page-wrapper .vh-100-section:not(.hero-section) {
+  position: relative;
+}
+
+.home-page-wrapper .vh-100-section:not(.hero-section)::before,
+.home-page-wrapper .vh-100-section:not(.hero-section)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(56px, 9vh, 140px);
+  pointer-events: none;
+  z-index: 6; /* above backgrounds, below content layers */
+}
+
+/* Fade-in from previous section */
+.home-page-wrapper .vh-100-section:not(.hero-section)::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--color-bg-primary) 0%, rgba(10, 10, 12, 0) 100%);
+}
+
+/* Fade-out into next section */
+.home-page-wrapper .vh-100-section:not(.hero-section)::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--color-bg-primary) 0%, rgba(10, 10, 12, 0) 100%);
+}
+
 /* Enable scroll-snap on the page wrapper */
 .home-page-wrapper {
   scroll-snap-type: y proximity;  /* Proximity snap - gentle, not aggressive */
