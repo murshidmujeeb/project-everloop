@@ -12,11 +12,6 @@ const Footer = () => {
 
                     {/* Col 1 — Brand */}
                     <div className="footer-col footer-col--brand">
-                        <img
-                            src={logoUrl}
-                            alt="Everloop Carpet"
-                            className="footer-logo"
-                        />
                         <p className="footer-tagline">Engineered for Longevity.</p>
                         <div className="footer-socials">
                             <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
