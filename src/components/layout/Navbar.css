@@ -1,252 +1,244 @@
-/* ─── NAVBAR ──────────────────────────────────────────────── */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 0;
-    background-color: transparent;
-    transition: all 0.4s ease;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--nav-height, 72px);
+  background: transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
 }
 
-/* Standard full-width macOS style navbar when scrolled */
+/* When on home and not scrolled — transparent over hero */
+.navbar.transparent {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* When scrolled */
 .navbar.scrolled {
-    padding: 16px 0;
-    background: rgba(10, 10, 12, 0.7);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgb(0, 0, 0);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  color: #FFFFFF;
 }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 80vw;
-    margin: 0 auto;
-    padding: 0 var(--content-padding-x);
+/* Non-home pages always solid */
+.navbar:not(.transparent):not(.scrolled) {
+  background: #FFFFFF;
+  box-shadow: 0 1px 0 #E5E5E5;
 }
 
-/* ─── LOGO ─────────────────────────────────────────────────── */
-.logo {
-    display: flex;
-    align-items: center;
+.nav-inner {
+  max-width: var(--container-max, 1280px);
+  margin: 0 auto;
+  padding: 0 var(--container-padding, 48px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
 }
 
-.brand-logo-container {
-    display: inline-block;
-    /* Background gradient is now injected dynamically via inline style in React */
-    -webkit-mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center left;
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center left;
-    transition: filter 0.3s ease, transform 0.3s ease;
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
-.brand-logo-container:hover {
-    filter: brightness(1.2);
+.nav-logo-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
-.brand-logo-spacer {
-    height: 52px;
-    /* Standard logo size for interior pages */
-    width: auto;
-    opacity: 0;
-    /* Hidden, provides physical dimensions for the mask */
-    display: block;
-    transition: height 0.4s ease;
+/* When transparent (over hero dark bg), show white logo */
+.navbar.transparent .nav-logo-img {
+  filter: brightness(0) invert(1);
 }
 
-/* Home Page specific enlargement */
-.brand-logo-spacer.home-logo {
-    height: 100px;
+/* Desktop Links */
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-left: auto;
 }
 
-/* ─── RIGHT SECTION (Links + Actions) ───────────────────────────────────────────── */
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 40px;
+.nav-link {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-primary, #1C1C1A);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
 }
 
-.nav-links {
-    display: flex;
-    gap: 32px;
-    align-items: center;
+.nav-link:hover {
+  opacity: 0.6;
 }
 
-.nav-item {
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--color-text-secondary);
-    letter-spacing: var(--letter-spacing-nav);
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-    position: relative;
-    padding: 4px 0;
+/* On transparent nav, links are white */
+.navbar.transparent .nav-link {
+  color: rgba(255, 255, 255, 0.85);
 }
 
-/* Specific styling for when resting on the Landing Hero Image */
-.navbar:not(.scrolled).is-home .nav-item {
-    color: #ffffff;
-    /* High contrast white */
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-    /* Text shadow for legibility */
+.navbar.transparent .nav-link:hover {
+  color: #FFFFFF;
+  opacity: 1;
 }
 
-/* Hover remains the same */
-.nav-item:hover,
-.navbar:not(.scrolled).is-home .nav-item:hover {
-    color: var(--color-text-primary);
+/* On scrolled nav, links are white */
+.navbar.scrolled .nav-link {
+  color: #FFFFFF;
 }
 
-/* Elegant minimalist underline on hover */
-.nav-item::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--color-text-primary);
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* CTA Button */
+.nav-cta-wrap {
+  flex-shrink: 0;
 }
 
-.nav-item:hover::after {
-    width: 100%;
+.nav-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: var(--cta-bg, #1C1C1A);
+  padding: 10px 24px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  white-space: nowrap;
 }
 
-/* ─── CONTACT BUTTON ──────────────────────────────────────── */
-.nav-contact-btn {
-    padding: 10px 24px;
-    background-color: var(--color-text-primary);
-    border-radius: var(--radius-full);
-    font-family: var(--font-body);
-    font-weight: var(--weight-medium);
-    font-size: 13px;
-    letter-spacing: var(--letter-spacing-nav);
-    text-transform: uppercase;
-    color: #000;
-    transition: all 0.3s ease;
+.nav-cta-btn:hover {
+  background: var(--cta-hover, #3A3A38);
+  color: #FFFFFF;
 }
 
-.nav-contact-btn:hover {
-    transform: scale(1.02);
-    background-color: var(--color-cta-hover);
+/* On transparent nav — white bg CTA with dark text */
+.navbar.transparent .nav-cta-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
 }
 
-/* ─── ACTIONS ─────────────────────────────────────────────── */
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.navbar.transparent .nav-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
-.lang-selector {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: var(--weight-medium);
-    letter-spacing: var(--letter-spacing-nav);
-    text-transform: uppercase;
-    color: var(--color-text-secondary);
-    cursor: pointer;
-    transition: color 0.3s ease;
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
 }
 
-.lang-selector:hover {
-    color: var(--color-text-primary);
+.ham-line {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--text-primary, #1C1C1A);
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-/* ─── MOBILE TOGGLE ──────────────────────────────────────── */
-.mobile-toggle {
+.navbar.transparent .ham-line {
+  background: #FFFFFF;
+}
+
+.ham-line.open:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.ham-line.open:nth-child(2) {
+  opacity: 0;
+}
+
+.ham-line.open:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-dark, #1C1C1A);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+.mobile-nav-links a {
+  font-family: 'Canela Light', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mobile-nav-links a:hover {
+  color: #FFFFFF;
+}
+
+.mobile-nav-links .mobile-cta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 14px 40px;
+  border-radius: 2px;
+  margin-top: 8px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .nav-links-desktop {
     display: none;
-    background: transparent;
-    border: none;
-    color: var(--color-text-primary);
-    cursor: pointer;
-    z-index: 1002;
-    transition: transform 0.3s ease;
-    padding: 4px; /* Slightly reduce hit area footprint */
-}
+  }
 
-.mobile-toggle svg {
-    width: 24px; /* Reduced from 28px default in lucide if passed explicitly */
-    height: 24px;
-}
-
-.mobile-toggle:hover {
-    opacity: 0.8;
-}
-
-/* ─── MOBILE NAV OVERLAY ────────────────────────────────────── */
-.mobile-nav-overlay {
+  .nav-cta-wrap {
     display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
 }
 
-@media (max-width: 992px) {
-    .hidden-mobile {
-        display: none !important;
-    }
-
-    .mobile-toggle {
-        display: flex;
-    }
-
-    .mobile-nav-overlay {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: var(--color-bg-primary); /* Solid background for legibility */
-        z-index: 1000;
-    }
-
-    .mobile-nav-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        padding: 40px 20px;
-    }
-
-    .mobile-nav-links {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        text-align: center;
-    }
-
-    .mobile-nav-links a:not(.mobile-contact-btn) {
-        font-family: var(--font-heading);
-        font-size: 28px;
-        font-weight: var(--weight-bold);
-        color: var(--color-text-secondary);
-        letter-spacing: -0.02em;
-        transition: color 0.3s ease;
-    }
-
-    .mobile-nav-links a:hover {
-        color: var(--color-text-primary);
-    }
-
-    .mobile-contact-btn {
-        margin-top: 32px;
-        padding: 14px 40px;
-        background-color: var(--color-text-primary);
-        color: #000;
-        border-radius: 100px;
-        font-family: var(--font-body);
-        font-weight: var(--weight-medium);
-        font-size: 16px;
-    }
+@media (max-width: 768px) {
+  .nav-inner {
+    padding: 0 var(--container-padding-mobile, 24px);
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import './Home.css';
@@ -159,30 +159,23 @@ const Home = () => {
         offset: ["start start", "end end"]
     });
 
-    // Provide a smoothed progress so both shifting and flipping are identical
-    const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
-
     // Transforms for the card rotation and position swap
-    const cardRotateY = useTransform(smoothProgress, [0.3, 0.7], [0, 180]);
+    const cardRotateY = useTransform(scrollYProgress, [0.3, 0.7], [0, 180]);
     // cardZ: lift the card 'towards' the user during the middle of the flip for depth
-    const cardZ = useTransform(smoothProgress, [0.3, 0.5, 0.7], [0, 150, 0]);
+    const cardZ = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0, 150, 0]);
 
     // Image moves from RIGHT to LEFT
-    const imageX = useTransform(smoothProgress, [0.3, 0.7], ["0%", "calc(-100% - 80px)"]);
+    const imageX = useTransform(scrollYProgress, [0.3, 0.7], ["0%", "calc(-100% - 80px)"]);
     // Text moves from LEFT to RIGHT
-    const textX = useTransform(smoothProgress, [0.3, 0.7], ["0%", "calc(100% + 80px)"]);
+    const textX = useTransform(scrollYProgress, [0.3, 0.7], ["0%", "calc(100% + 80px)"]);
     
     // Process Text animations (Pausing before transition)
-    const processTextOpacity = useTransform(smoothProgress, [0, 0.35, 0.5], [1, 1, 0]);
-    const processTextInsideX = useTransform(smoothProgress, [0, 0.35, 0.5], [0, 0, -50]);
+    const processTextOpacity = useTransform(scrollYProgress, [0, 0.35, 0.5], [1, 1, 0]);
+    const processTextInsideX = useTransform(scrollYProgress, [0, 0.35, 0.5], [0, 0, -50]);
     
     // Sustainability Text animations (Fading in while moving right)
-    const sustainabilityTextOpacity = useTransform(smoothProgress, [0.45, 0.65, 1], [0, 1, 1]);
-    const sustainabilityTextInsideX = useTransform(smoothProgress, [0.45, 0.65, 1], [50, 0, 0]);
+    const sustainabilityTextOpacity = useTransform(scrollYProgress, [0.45, 0.65, 1], [0, 1, 1]);
+    const sustainabilityTextInsideX = useTransform(scrollYProgress, [0.45, 0.65, 1], [50, 0, 0]);
 
     // Re-adjusting for the component below
     
@@ -283,7 +276,10 @@ const Home = () => {
             </section>
 
             {/* ─ UNIFIED STICKY EXPERIENCE ──────────────────────── */}
-            <section className="section sticky-experience-section" ref={stickyRef}>
+            <section className="section sticky-experience-section" ref={stickyRef} style={{ background: '#f8f8f8', border: '5px solid green' }}>
+                <div style={{ position: 'sticky', top: '100px', left: 0, right: 0, background: 'yellow', color: 'black', zIndex: 10000, padding: '10px', textAlign: 'center', fontWeight: 'bold' }}>
+                    IF THIS YELLOW BAR IS NOT VISIBLE, THE SECTION IS MISSING
+                </div>
                 <div className="sticky-container">
                     <div className="sticky-inner">
                         {/* Text Layer */}

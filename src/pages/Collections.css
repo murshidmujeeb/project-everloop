@@ -45,13 +45,13 @@
     aspect-ratio: 4 / 5;
     border-radius: var(--radius-md);
     overflow: hidden;
-    background: #111;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--color-bg-secondary);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     transition: border-color 0.4s ease;
 }
 
 .lookbook-item:hover .lookbook-image-wrap {
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(0, 0, 0, 0.2);
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
@@ -84,9 +84,9 @@
 }
 
 .lookbook-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-subheading);
     font-size: 24px;
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-thin);
     letter-spacing: -0.02em;
     color: var(--color-text-primary);
 }
@@ -109,7 +109,7 @@
     height: 44px;
     border-radius: 50%;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     color: var(--color-text-primary);
     display: flex;
     align-items: center;
@@ -147,7 +147,7 @@
     height: calc(100dvh - 80px);
     margin-top: 80px; /* Offset for fixed navbar */
     width: 100%;
-    background: #000;
+    background: var(--color-bg-primary);
     overflow: hidden;
     color: var(--color-text-primary);
     display: flex;
@@ -175,8 +175,8 @@
 .ambient-overlay {
     position: absolute;
     inset: 0;
-    /* Soft dark gradient fading up from bottom */
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.2) 100%);
+    /* Soft light Ivory gradient fading up from bottom */
+    background: linear-gradient(to top, rgba(253, 252, 240, 0.9) 0%, rgba(253, 252, 240, 0.5) 40%, rgba(253, 252, 240, 0.2) 100%);
 }
 
 .fade-in-fast {
@@ -316,7 +316,7 @@
 }
 
 .collection-counter .dim {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(0, 0, 0, 0.3);
     font-weight: var(--weight-regular);
 }
 
@@ -338,9 +338,9 @@
 }
 
 .collection-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-headline);
     font-size: clamp(36px, 5vw, 64px);
-    font-weight: var(--weight-bold);
+    font-weight: 300; /* Light */
     letter-spacing: -0.02em;
     line-height: 0.95;
     margin-bottom: 8px;
@@ -380,8 +380,8 @@
 }
 
 .outline-glow {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     color: var(--color-text-primary);
     padding: 16px 32px;
@@ -400,7 +400,7 @@
 .outline-glow:hover {
     background: var(--color-text-primary);
     color: #000;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
     border-color: var(--color-text-primary);
 }
 
@@ -411,7 +411,7 @@
     left: 0;
     width: 100%;
     padding: 32px 5%;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    background: linear-gradient(to top, rgba(253, 252, 240, 0.9), transparent);
     z-index: 20;
 }
 
@@ -446,8 +446,8 @@
 }
 
 .dock-reveal-arrow {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 50%;
     width: 48px;
     height: 48px;
@@ -483,8 +483,8 @@
     height: 72px;
     border-radius: 50%; /* Circle thumbnails */
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    background: #111;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    background: var(--color-bg-secondary);
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease;
     cursor: pointer;
 }
@@ -526,8 +526,8 @@
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: rgba(20, 20, 24, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(253, 252, 240, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     color: var(--color-text-primary);
@@ -553,7 +553,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.05);
     z-index: 50; /* Above navbar if necessary, or just high */
 }
 
@@ -608,9 +608,15 @@
 }
 
 @media (max-width: 768px) {
+    .index-header {
+        padding: 120px 5% 40px;
+    }
+    .index-gallery {
+        padding: 0 5% 60px;
+    }
     .lookbook-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 20px;
     }
 
     .collections-exhibition-wrapper {
@@ -660,7 +666,7 @@
 .minimal-search {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding: 8px 0;
     width: 100%;
     max-width: 400px;
@@ -720,14 +726,14 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .spec-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     font-family: var(--font-body);
     font-size: 12px;
     letter-spacing: 0.05em;

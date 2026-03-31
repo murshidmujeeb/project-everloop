@@ -69,8 +69,8 @@ const Contact = () => {
 
                             <div className="info-blocks">
                                 {[
-                                    { icon: <MapPin size={24} />, title: "Global Headquarters", desc: "One World Trade Center, Suite 8500\nNew York, NY 10007, USA" },
-                                    { icon: <Phone size={24} />, title: "Direct Line", desc: "+1 (212) 555-0198\nMon-Fri, 9am - 6pm EST" },
+                                    { icon: <MapPin size={24} />, title: "Corporate Headquarters", desc: "Unit 01 | Ground Floor | Building No.31 | Street No. 251\nAl Amir Street | Zone No.55 | PO Box 1657 | Doha, Qatar" },
+                                    { icon: <Phone size={24} />, title: "Enquiry Line", desc: "+974 40014008\nAvailable for global consultations" },
                                     { icon: <Mail size={24} />, title: "Email Comm", desc: "inquiries@everloopcarpet.com\nsamples@everloopcarpet.com" }
                                 ].map((info, idx) => (
                                     <motion.div key={idx} variants={fadeUp} className="info-block glass-panel">

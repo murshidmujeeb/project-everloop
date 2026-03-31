@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import logoUrl from '../../assets/logo.png';
 import './Navbar.css';
@@ -11,112 +10,84 @@ const Navbar = () => {
 
     const location = useLocation();
     const isHome = location.pathname === '/';
-    const isHeroVisible = isHome && !isScrolled;
-
-    // Dynamic logo gradient: luxury warm metallic when on hero, cooler platinum elsewhere
-    const logoGradient = isHeroVisible
-        ? "linear-gradient(135deg, #f5f3ff 0%, #f3e2c4 28%, #d1a766 55%, #f7f2e9 100%)"
-        : "linear-gradient(135deg, #f5f5f7 0%, #b9bcc7 45%, #8b8c97 100%)";
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            setIsScrolled(window.scrollY > 80);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const toggleMenu = () => {
-        setMobileMenuOpen(!mobileMenuOpen);
-        // Prevent scrolling when mobile menu is open
-        if (!mobileMenuOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
+        const next = !mobileMenuOpen;
+        setMobileMenuOpen(next);
+        document.body.style.overflow = next ? 'hidden' : '';
+    };
+
+    const closeMenu = () => {
+        setMobileMenuOpen(false);
+        document.body.style.overflow = '';
     };
 
     return (
-        <motion.header
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className={`navbar ${isScrolled ? 'scrolled' : ''} ${isHome ? 'is-home' : ''}`}
-        >
-            <div className="nav-container">
-                <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="logo"
-                >
-                    <Link
-                        to="/"
-                        onClick={() => mobileMenuOpen && toggleMenu()}
-                        className="brand-logo-container"
-                        style={{
-                            WebkitMaskImage: `url(${logoUrl})`,
-                            maskImage: `url(${logoUrl})`,
-                            background: logoGradient
-                        }}
-                    >
-                        <img src={logoUrl} alt="Everloop Carpet Logo" className={`brand-logo-spacer ${isHeroVisible ? 'home-logo' : ''}`} />
+        <header className={`navbar ${isScrolled ? 'scrolled' : ''} ${isHome && !isScrolled ? 'transparent' : ''}`}>
+            <div className="nav-inner">
+                {/* Logo - Hidden on Home Page */}
+                {!isHome && (
+                    <Link to="/" className="nav-logo" onClick={closeMenu}>
+                        <img src={logoUrl} alt="Everloop Carpet" className="nav-logo-img" />
                     </Link>
-                </motion.div>
+                )}
 
-                {/* Desktop Nav Right Section */}
-                <div className="nav-right hidden-mobile">
-                    <nav className="nav-links">
-                        <Link className="nav-item" to="/">Home</Link>
-                        <Link className="nav-item" to="/collections">Collections</Link>
-                        <Link className="nav-item" to="/technical">Technical</Link>
-                        <Link className="nav-item" to="/about">About Us</Link>
-                        <Link className="nav-item" to="/projects">Projects</Link>
-                    </nav>
+                {/* Desktop Links */}
+                <nav className="nav-links-desktop">
+                    <Link className="nav-link" to="/">Home</Link>
+                    <Link className="nav-link" to="/collections">Collections</Link>
+                    <Link className="nav-link" to="/technical">Technical</Link>
+                    <Link className="nav-link" to="/about">About</Link>
+                </nav>
 
-                    <div className="nav-actions">
-                        <div className="lang-selector">
-                            <Globe size={16} />
-                            <span>EN</span>
-                        </div>
-                        <Link to="/contact" className="nav-contact-btn">Contact</Link>
-                    </div>
+                {/* Desktop CTA */}
+                <div className="nav-cta-wrap">
+                    <Link to="/contact" className="nav-cta-btn">Get a Quote</Link>
                 </div>
 
-                {/* Mobile Toggle Button */}
-                <button className="mobile-toggle" onClick={toggleMenu} aria-label="Toggle Menu">
-                    {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                {/* Hamburger */}
+                <button className="nav-hamburger" onClick={toggleMenu} aria-label="Toggle menu">
+                    <span className={`ham-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+                    <span className={`ham-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+                    <span className={`ham-line ${mobileMenuOpen ? 'open' : ''}`}></span>
                 </button>
-
-                {/* Mobile Nav Overlay */}
-                <AnimatePresence>
-                    {mobileMenuOpen && (
-                        <motion.nav
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                            className="mobile-nav-overlay"
-                        >
-                            <div className="mobile-nav-container">
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.1 }}
-                                    className="mobile-nav-links"
-                                >
-                                    <Link to="/" onClick={toggleMenu}>Home</Link>
-                                    <Link to="/collections" onClick={toggleMenu}>Collections</Link>
-                                    <Link to="/technical" onClick={toggleMenu}>Technical</Link>
-                                    <Link to="/about" onClick={toggleMenu}>About Us</Link>
-                                    <Link to="/projects" onClick={toggleMenu}>Projects</Link>
-                                    <Link to="/contact" className="mobile-contact-btn" onClick={toggleMenu}>Contact</Link>
-                                </motion.div>
-                            </div>
-                        </motion.nav>
-                    )}
-                </AnimatePresence>
             </div>
-        </motion.header>
+
+            {/* Mobile Overlay */}
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="mobile-overlay"
+                    >
+                        <motion.nav
+                            initial={{ y: -20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -20, opacity: 0 }}
+                            transition={{ delay: 0.1, duration: 0.3 }}
+                            className="mobile-nav-links"
+                        >
+                            <Link to="/" onClick={closeMenu}>Home</Link>
+                            <Link to="/collections" onClick={closeMenu}>Collections</Link>
+                            <Link to="/technical" onClick={closeMenu}>Technical</Link>
+                            <Link to="/about" onClick={closeMenu}>About</Link>
+                            <Link to="/contact" className="mobile-cta" onClick={closeMenu}>Get a Quote</Link>
+                        </motion.nav>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </header>
     );
 };
 

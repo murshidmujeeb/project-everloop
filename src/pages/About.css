@@ -11,11 +11,11 @@
     display: flex;
     align-items: center;
     background:
-        radial-gradient(circle at 0% 0%, #282845 0%, transparent 55%),
-        radial-gradient(circle at 100% 100%, #181826 0%, transparent 55%),
-        linear-gradient(to bottom, #050509 0%, #0f0f18 50%, #050509 100%);
+        radial-gradient(circle at 0% 0%, #fdfcf0 0%, transparent 55%),
+        radial-gradient(circle at 100% 100%, #f4f2e0 0%, transparent 55%),
+        linear-gradient(to bottom, #fdfcf0 0%, #f4f2e0 50%, #fdfcf0 100%);
     text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     overflow: hidden;
 }
 
@@ -24,8 +24,8 @@
     position: absolute;
     inset: -20%;
     background:
-        radial-gradient(900px 480px at 10% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 65%),
-        radial-gradient(1200px 520px at 80% 40%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+        radial-gradient(900px 480px at 10% 0%, rgba(0, 0, 0, 0.05) 0%, transparent 65%),
+        radial-gradient(1200px 520px at 80% 40%, rgba(0, 0, 0, 0.03) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -65,19 +65,19 @@
 }
 
 .page-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-headline);
     font-size: clamp(40px, 6vw, 80px);
     /* Matches home hero logic */
-    font-weight: var(--weight-bold);
+    font-weight: 300; /* Light */
     letter-spacing: -0.04em;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
     margin-bottom: 24px;
     line-height: 0.95;
 }
 
 .page-subtitle {
     font-size: 17px;
-    color: rgba(161, 161, 170, 0.85);
+    color: rgba(74, 74, 74, 0.85);
     max-width: 600px;
     line-height: 1.8;
     font-weight: var(--weight-light);
@@ -86,7 +86,7 @@
 /* ─── STORY CHAPTERS ───────────────────────────────── */
 .about-section {
     background:
-        linear-gradient(to bottom, #050509 0%, #0e0e17 50%, #050509 100%);
+        linear-gradient(to bottom, #fdfcf0 0%, #f4f2e0 50%, #fdfcf0 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -94,7 +94,7 @@
 
 .about-section.alt {
     background:
-        linear-gradient(to bottom, #10101b 0%, #050509 80%);
+        linear-gradient(to bottom, #f4f2e0 0%, #fdfcf0 80%);
 }
 
 .section-title.large {
@@ -169,7 +169,7 @@
     bottom: -10px;
     width: 42px;
     height: 1px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8), transparent);
     opacity: 0.7;
     transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
 }
@@ -234,7 +234,7 @@
 
 .pillar-card h3 {
     font-size: 24px;
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-thin);
     margin-bottom: 20px;
     color: var(--color-text-primary);
 }
@@ -260,7 +260,7 @@
 /* ─── PROCESS SECTION ─────────────────────────────── */
 .about-process {
     background:
-        linear-gradient(to bottom, #050509 0%, #0f0f19 60%, #050509 100%);
+        linear-gradient(to bottom, #fdfcf0 0%, #f4f2e0 60%, #fdfcf0 100%);
     border-top: 1px solid var(--color-border);
     min-height: 100vh;
     display: flex;
@@ -288,8 +288,8 @@
 .process-card {
     padding: 32px 28px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), rgba(7, 7, 11, 0.98));
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: radial-gradient(circle at top left, rgba(0, 0, 0, 0.05), rgba(253, 252, 240, 0.98));
     transition:
         transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
         border-color 0.4s ease,
@@ -313,9 +313,9 @@
 
 .process-card:hover {
     transform: translateY(-14px) rotateX(8deg);
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.65);
-    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), rgba(6, 6, 10, 0.99));
+    border-color: rgba(0, 0, 0, 0.18);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.15);
+    background: radial-gradient(circle at top, rgba(0, 0, 0, 0.08), rgba(244, 242, 224, 0.99));
 }
 
 /* ─── STATS ───────────────────────────────────────── */
@@ -330,8 +330,8 @@
     min-width: 160px;
     padding: 18px 24px;
     border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.03), rgba(10, 10, 12, 0.96));
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: radial-gradient(circle at top left, rgba(0, 0, 0, 0.03), rgba(253, 252, 240, 0.96));
     transition:
         transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
         border-color 0.3s ease,
@@ -357,7 +357,7 @@
 /* ─── EPILOGUE ────────────────────────────────────── */
 .about-epilogue {
     background:
-        linear-gradient(to bottom, #050509 0%, #0f0f18 60%, #050509 100%);
+        linear-gradient(to bottom, #fdfcf0 0%, #f4f2e0 60%, #fdfcf0 100%);
     border-top: 1px solid var(--color-border);
     padding: 120px 0;
     min-height: 100vh;
@@ -370,9 +370,9 @@
     margin: 0 auto;
     padding: 40px 32px;
     border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), rgba(10, 10, 12, 0.96));
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: radial-gradient(circle at top, rgba(0, 0, 0, 0.06), rgba(253, 252, 240, 0.96));
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.1);
     transition:
         transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
         box-shadow 0.45s ease,
@@ -381,8 +381,8 @@
 
 .epilogue-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 32px 90px rgba(0, 0, 0, 0.85);
-    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 32px 90px rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 0, 0, 0.16);
 }
 
 /* ─── CLEANUP ─────────────────────────────────────── */
@@ -395,4 +395,34 @@
 .cert-grid,
 .team-grid {
     display: none;
+}
+
+/* ─── MOBILE RESPONSIVE ───────────────────────────── */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 140px 0 80px;
+    }
+    
+    .process-card {
+        padding: 24px 20px;
+    }
+
+    .about-stats {
+        gap: 16px;
+    }
+
+    .about-stat {
+        min-width: 120px;
+        padding: 16px 20px;
+        flex: 1 1 calc(50% - 16px);
+    }
+
+    .about-stat-number {
+        font-size: 28px;
+    }
+
+    .epilogue-card {
+        padding: 32px 24px;
+        margin: 0 16px;
+    }
 }

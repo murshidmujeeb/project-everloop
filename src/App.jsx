@@ -7,24 +7,43 @@ import About from './pages/About';
 import Collections from './pages/Collections';
 import Technical from './pages/Technical';
 import Contact from './pages/Contact';
-import Projects from './pages/Projects';
 import ScrollToTop from './components/layout/ScrollToTop';
 
+import LoadingScreen from './components/layout/LoadingScreen';
+import { AnimatePresence } from 'motion/react';
+
 function App() {
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    // Simulate initial asset loading / branded entrance
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <HelmetProvider>
       <Router>
         <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="collections" element={<Collections />} />
-            <Route path="technical" element={<Technical />} />
-            <Route path="projects" element={<Projects />} />
-            <Route path="contact" element={<Contact />} />
-          </Route>
-        </Routes>
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <LoadingScreen key="loader" />
+          ) : null}
+        </AnimatePresence>
+        
+        {!isLoading && (
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="collections" element={<Collections />} />
+              <Route path="technical" element={<Technical />} />
+              <Route path="contact" element={<Contact />} />
+            </Route>
+          </Routes>
+        )}
       </Router>
     </HelmetProvider>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -135,54 +135,45 @@ const steps = [
     { num: '04', title: 'Professional Installation', body: 'Certified Everloop installers complete the project with precision, minimal disruption, and a comprehensive handover report.' }
 ];
 
-// ─── FAQ Item Component ───────────────────────────────────────
-const FaqItem = ({ q, a }) => {
-    const [open, setOpen] = useState(false);
-    return (
-        <div className={`faq-item ${open ? 'open' : ''}`}>
-            <button className="faq-trigger" onClick={() => setOpen(!open)} aria-expanded={open}>
-                <span>{q}</span>
-                <span className="faq-icon">{open ? '−' : '+'}</span>
-            </button>
-            <div className="faq-body">
-                <p>{a}</p>
-            </div>
-        </div>
-    );
-};
-
-// ─── Home Component ───────────────────────────────────────────
-const Home = () => {
-    const stickyRef = useRef(null);
-    const { scrollYProgress } = useScroll({
+// ─── FAQ Item Component ───────────────────────────────�    const { scrollYProgress } = useScroll({
         target: stickyRef,
         offset: ["start start", "end end"]
     });
 
-    // Provide a smoothed progress so both shifting and flipping are identical
+    // SMOOTHING: introduction of useSpring to stop the 'broken shift'
     const smoothProgress = useSpring(scrollYProgress, {
         stiffness: 100,
         damping: 30,
         restDelta: 0.001
     });
 
-    // Transforms for the card rotation and position swap
-    const cardRotateY = useTransform(smoothProgress, [0.3, 0.7], [0, 180]);
-    // cardZ: lift the card 'towards' the user during the middle of the flip for depth
-    const cardZ = useTransform(smoothProgress, [0.3, 0.5, 0.7], [0, 150, 0]);
+    // Transforms for the card rotation and position swap (using smoothProgress)
+    const cardRotateY = useTransform(smoothProgress, [0.3, 0.7], ["0deg", "180deg"]);
+    const cardZ = useTransform(smoothProgress, [0.3, 0.5, 0.7], [0, 200, 0]);
 
-    // Image moves from RIGHT to LEFT
+    // Image moves from RIGHT to LEFT (synchronized with flip using smoothProgress)
     const imageX = useTransform(smoothProgress, [0.3, 0.7], ["0%", "calc(-100% - 80px)"]);
     // Text moves from LEFT to RIGHT
     const textX = useTransform(smoothProgress, [0.3, 0.7], ["0%", "calc(100% + 80px)"]);
     
-    // Process Text animations (Pausing before transition)
+    // Process Text animations (using smoothProgress)
     const processTextOpacity = useTransform(smoothProgress, [0, 0.35, 0.5], [1, 1, 0]);
     const processTextInsideX = useTransform(smoothProgress, [0, 0.35, 0.5], [0, 0, -50]);
     
-    // Sustainability Text animations (Fading in while moving right)
+    // Sustainability Text animations (using smoothProgress)
     const sustainabilityTextOpacity = useTransform(smoothProgress, [0.45, 0.65, 1], [0, 1, 1]);
     const sustainabilityTextInsideX = useTransform(smoothProgress, [0.45, 0.65, 1], [50, 0, 0]);
+imageX = useTransform(scrollYProgress, [0.3, 0.7], ["0%", "calc(-100% - 80px)"]);
+    // Text moves from LEFT to RIGHT
+    const textX = useTransform(scrollYProgress, [0.3, 0.7], ["0%", "calc(100% + 80px)"]);
+    
+    // Process Text animations (Pausing before transition)
+    const processTextOpacity = useTransform(scrollYProgress, [0, 0.35, 0.5], [1, 1, 0]);
+    const processTextInsideX = useTransform(scrollYProgress, [0, 0.35, 0.5], [0, 0, -50]);
+    
+    // Sustainability Text animations (Fading in while moving right)
+    const sustainabilityTextOpacity = useTransform(scrollYProgress, [0.45, 0.65, 1], [0, 1, 1]);
+    const sustainabilityTextInsideX = useTransform(scrollYProgress, [0.45, 0.65, 1], [50, 0, 0]);
 
     // Re-adjusting for the component below
     
@@ -434,3 +425,4 @@ const Home = () => {
 };
 
 export default Home;
+

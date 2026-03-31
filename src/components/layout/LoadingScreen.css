@@ -1,0 +1,77 @@
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #1C1C1A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Blurred hero background image */
+.loading-bg-image {
+  position: absolute;
+  inset: -10px; /* extend past edges to avoid blur white edges */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(3px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Subtle dark overlay for contrast */
+.loading-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 28, 26, 0.55);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.loading-logo-container {
+  width: 420px;
+  max-width: 85vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.loading-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Enhanced shimmer sweep */
+.logo-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 30%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.15) 70%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  z-index: 2;
+}
